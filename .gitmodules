@@ -1,0 +1,6 @@
+[submodule "private"]
+	path = private
+	url = git@github.com:winterfell-ys/winterfell-ys.hexo.private.git
+[submodule "source"]
+	path = source
+	url = git@github.com:winterfell-ys/winterfell-ys.hexo.source.git
