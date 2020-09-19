@@ -190,12 +190,12 @@ valine:
 
 # 2、Gitalk(https://github.com/gitalk/gitalk)
 gitalk:
-  enable: false # true
-  clientID: # GitHub Application Client ID
-  clientSecret: # Client Secret
-  repo: # Repository name
-  owner: # GitHub ID
-  admin: # GitHub ID
+  enable: true # true
+  clientID: c57d23e7c033e2ded72c
+  clientSecret: 10b9f2872902ee2393e16dd1c40b4f54d681c709
+  repo: https://github.com/winterfell-ys/winterfell-ys.github.io.git
+  owner: winterfell-ys
+  admin: winterfell-ys
 
 # 3、MiniValine
 # See: https://github.com/MiniValine/MiniValine
