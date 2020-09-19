@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    图解TCP/IP |  
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-learn-tcpip"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  图解TCP/IP
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/05/learn-tcpip/" class="article-date">
+  <time datetime="2020-05-23T16:03:07.000Z" itemprop="datePublished">2020-05-24</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a> / <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">3.8k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">13 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="网络基础知识"><a href="#网络基础知识" class="headerlink" title="网络基础知识"></a>网络基础知识</h2><h3 id="出现背景"><a href="#出现背景" class="headerlink" title="出现背景"></a>出现背景</h3><h3 id="网络发展7个阶段"><a href="#网络发展7个阶段" class="headerlink" title="网络发展7个阶段"></a>网络发展7个阶段</h3><ul>
+<li>批处理</li>
+<li>分时系统<ul>
+<li>多路性, 独占性, 交换性, 及时性</li>
+</ul>
+</li>
+<li>计算机之间的通信</li>
+<li>计算机网络</li>
+<li>互联网的普及</li>
+<li>互联网技术为中心</li>
+<li>建立安全连接</li>
+</ul>
+<h3 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h3><h3 id="协议分层和OSI参考模型"><a href="#协议分层和OSI参考模型" class="headerlink" title="协议分层和OSI参考模型"></a>协议分层和OSI参考模型</h3><ul>
+<li>应用层</li>
+<li>表示层: 将设备固有的数据格式转换为网络标准传输格式</li>
+<li>会话层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>数据链路层</li>
+<li>物理层</li>
+</ul>
+<h3 id="传输方式分类"><a href="#传输方式分类" class="headerlink" title="传输方式分类"></a>传输方式分类</h3><ul>
+<li>面相有连接型 &amp; 面相无连接型</li>
+<li>分组交换: 连接到通信电路的计算机将所要发送的数据分成多个数据包, 按照一定顺序排列分别发送</li>
+<li>单播, 广播, 多播, 任播</li>
+</ul>
+<h3 id="地址"><a href="#地址" class="headerlink" title="地址"></a>地址</h3><ul>
+<li>唯一性</li>
+<li>层次性<ul>
+<li>MAC寻址: 地址转发表</li>
+<li>IP寻址: 路由控制表</li>
+</ul>
+</li>
+</ul>
+<h3 id="网络构成要素"><a href="#网络构成要素" class="headerlink" title="网络构成要素"></a>网络构成要素</h3><ul>
+<li>通信媒介与数据链路<ul>
+<li>传输速率-&gt;带宽(bps)</li>
+<li>吞吐量(bps)</li>
+</ul>
+</li>
+<li>网卡: 使计算机联网</li>
+<li>中继器: 物理层延长网络</li>
+<li>网桥: 数据链路层延长网络<ul>
+<li>将损坏的帧丢弃</li>
+<li>自学机制过滤功能控制网络流量(根据MAC地址)</li>
+</ul>
+</li>
+<li>路由器: 通过网络层转发分组数据的设备<ul>
+<li>连接两个网络, 对分组报文进行转发(根据IP地址)</li>
+</ul>
+</li>
+<li>4~7层交换机: 传输层以上各层网络传输设备<ul>
+<li>负载均衡器</li>
+<li>DNS负载均衡</li>
+<li>带宽控制(通信优先级)</li>
+<li>广域网加速器</li>
+<li>防火墙</li>
+</ul>
+</li>
+<li>网关: 转换协议的设备<ul>
+<li>不仅转发数据还负责对数据进行转换</li>
+<li>代理服务器, C/S间无需在网络进行通信, 从传输层到应用层对数据和访问进行控制处理(防火墙)</li>
+</ul>
+</li>
+</ul>
+<h3 id="现代网络时态"><a href="#现代网络时态" class="headerlink" title="现代网络时态"></a>现代网络时态</h3><ul>
+<li>网络构成<ul>
+<li>边缘网络(主干网出入口)</li>
+</ul>
+</li>
+<li>从信息发布者角度看网络<ul>
+<li>数据中心: 为了减少访问延迟, 汇集多个存储于一起, 通过连接高速网络, 提高响应速度</li>
+</ul>
+</li>
+</ul>
+<h2 id="TCP-IP-基础知识"><a href="#TCP-IP-基础知识" class="headerlink" title="TCP/IP 基础知识"></a>TCP/IP 基础知识</h2><h3 id="出现背景及历史"><a href="#出现背景及历史" class="headerlink" title="出现背景及历史"></a>出现背景及历史</h3><h3 id="TCP-IP-标准化"><a href="#TCP-IP-标准化" class="headerlink" title="TCP/IP 标准化"></a>TCP/IP 标准化</h3><ul>
+<li>具体来说, IP, ICMP, TCP, UDP, TELNET, FTP, HTTP都属于TCP/IP协议</li>
+<li>TCP/IP精髓: 开放性, 实用性</li>
+<li>TCP/IP规范: RFC</li>
+</ul>
+<h3 id="互联网基础知识"><a href="#互联网基础知识" class="headerlink" title="互联网基础知识"></a>互联网基础知识</h3><ul>
+<li>结构: 每个网络由骨干网和末端网组成</li>
+</ul>
+<h3 id="TCP-IP协议分层模型"><a href="#TCP-IP协议分层模型" class="headerlink" title="TCP/IP协议分层模型"></a>TCP/IP协议分层模型</h3><ul>
+<li>硬件(物理层)</li>
+<li>网络接口层(数据链路层)</li>
+<li>互联网层(网络层)<ul>
+<li>IP: 跨越网络传送数据包, 使整个网络收到数据的协议. 不具有重发机制, 非可靠性</li>
+<li>ICMP: IP数据包无法到达对端目标地址,给发送端发送一个异常通知</li>
+<li>ARP: IP地址解析物理地址(MAC地址)</li>
+</ul>
+</li>
+<li>传输层<ul>
+<li>TCP: 面向有连接的传输层协议</li>
+<li>UDP: 面向无连接的传输层协议</li>
+</ul>
+</li>
+<li>应用层(会话层以上的分层)<ul>
+<li>HTTP: 属于OSI的应用层</li>
+<li>HTML: 属于表示层</li>
+<li>SMTP: 发送电子邮件</li>
+<li>MIME: 定义邮件数据格式的规范, 属于表示层</li>
+<li>FTP: 两个TCP连接, 控制连接&amp;数据连接, 应用层</li>
+<li>TELNET: (远程登录)应用层</li>
+<li>SSH: (远程登录)应用层</li>
+<li>SNMP: (网络管理)应用层</li>
+</ul>
+</li>
+</ul>
+<h2 id="数据链路"><a href="#数据链路" class="headerlink" title="数据链路"></a>数据链路</h2><h3 id="数据链路作用"><a href="#数据链路作用" class="headerlink" title="数据链路作用"></a>数据链路作用</h3><ul>
+<li>WLAN 无线局域网</li>
+<li>PPP 点对点协议</li>
+</ul>
+<h3 id="数据链路相关技术"><a href="#数据链路相关技术" class="headerlink" title="数据链路相关技术"></a>数据链路相关技术</h3><ul>
+<li>MAC地址</li>
+<li>共享介质型网络<ul>
+<li>争用方式</li>
+<li>令牌传递方式</li>
+</ul>
+</li>
+<li>非共享介质网络</li>
+<li>根据MAC地址转发(自学)</li>
+<li>环路检测技术<ul>
+<li>生成树方式</li>
+<li>源路由法</li>
+</ul>
+</li>
+<li>VLAN</li>
+</ul>
+<h3 id="以太网"><a href="#以太网" class="headerlink" title="以太网"></a>以太网</h3><h3 id="无线通信"><a href="#无线通信" class="headerlink" title="无线通信"></a>无线通信</h3><ul>
+<li>IEEE802.11b/g/a/n</li>
+<li>蓝牙</li>
+<li>WiMAX</li>
+<li>ZigBee</li>
+</ul>
+<h3 id="PPP"><a href="#PPP" class="headerlink" title="PPP"></a>PPP</h3><ul>
+<li>ICP &amp; NCP</li>
+<li>PPPoE 接入</li>
+</ul>
+<h3 id="其他数据链路"><a href="#其他数据链路" class="headerlink" title="其他数据链路"></a>其他数据链路</h3><ul>
+<li>ATM</li>
+<li>POS</li>
+<li>FDDI</li>
+<li>TokenRing</li>
+</ul>
+<h2 id="IP协议"><a href="#IP协议" class="headerlink" title="IP协议"></a>IP协议</h2><ul>
+<li>IP</li>
+<li>ICMP</li>
+</ul>
+<h3 id="OSI第三层"><a href="#OSI第三层" class="headerlink" title="OSI第三层"></a>OSI第三层</h3><h3 id="IP基础知识"><a href="#IP基础知识" class="headerlink" title="IP基础知识"></a>IP基础知识</h3><ul>
+<li>路由控制: 将分组数据发送到最终目标地址</li>
+<li>Hop: 一跳指利用数据链路层以下分层的功能传输数据帧的一个区间</li>
+<li>路由控制表: 记录IP数据在下一步应该发给哪个服务器</li>
+<li>数据链路抽象化: 不同数据链路层, 不同的最大传输单位(MTU), IP层分片处理</li>
+<li>IP属于面向无连接型</li>
+</ul>
+<h3 id="IP地址"><a href="#IP地址" class="headerlink" title="IP地址"></a>IP地址</h3><ul>
+<li>网络标识.主机标识</li>
+<li>分类<ul>
+<li>A: 0开始(0.0.0.0~127.0.0.1) 8位网络标识</li>
+<li>B: 10开始(128.0.0.0~191.255.0.0) 16位网络标识</li>
+<li>C: 110开始(192.0.0.0~223.255.255.0) 24位网络标识</li>
+<li>D: 1110开始(224.0.0.0~239.255.255.255) 32位网络标识, 无主机标识</li>
+</ul>
+</li>
+<li>广播地址, 主机地址全为1<ul>
+<li>本地广播(本网络内广播)</li>
+<li>直接广播(不同网络间)</li>
+</ul>
+</li>
+<li>IP多播: 既可以穿透路由器, 又可以实现给必要的组发数据包<ul>
+<li>多播使用D类地址(28位多播组编号, 32-lens(1110))</li>
+</ul>
+</li>
+<li>子网掩码: 通过子网网络细分出更小粒度网络</li>
+<li>CIDR(无类型域间选路): 采用任意长度分格IP地址的网络标识和主机标识</li>
+<li>VLSM(可变长子网掩码)</li>
+<li>私有网络IP地址<ul>
+<li>10/8 A类</li>
+<li>172.16/12 B类</li>
+<li>192.168/16 C类</li>
+</ul>
+</li>
+<li>NAT技术: 互换私有IP和全局IP</li>
+</ul>
+<h3 id="路由控制"><a href="#路由控制" class="headerlink" title="路由控制"></a>路由控制</h3><ul>
+<li>默认路由: 0.0.0.0/0</li>
+<li>主机路由: 整个IP地址所有位都参与路由, 用于不希望通过网络地址路由的情况</li>
+<li>环回地址: 127.0.0.1</li>
+<li>路由控制表聚合: 减少路由表条目</li>
+</ul>
+<h3 id="IP分割处理与再构成处理"><a href="#IP分割处理与再构成处理" class="headerlink" title="IP分割处理与再构成处理"></a>IP分割处理与再构成处理</h3><ul>
+<li>数据链路不同, MTU相异</li>
+<li>路径MTU发现</li>
+</ul>
+<h3 id="IPv6"><a href="#IPv6" class="headerlink" title="IPv6"></a>IPv6</h3><ul>
+<li>8个16位字节</li>
+<li>特点<ul>
+<li>IP地址扩大, 路由控制表聚合</li>
+<li>性能提升, 路由器不分片(路径MTU发现)</li>
+<li>即插即用: 没有DHCP的服务器也自动分配IP</li>
+<li>认证加密, 防线路窃听(IPsec)</li>
+<li>多播, Mobile IP 成为扩展功能</li>
+</ul>
+</li>
+<li>全局单播地址: 64bit网络标识 64bit主机标识</li>
+<li>链路本地单播地址: 1111 1110 10 + 54bit 0 (FE80::/10)</li>
+<li>唯一本地地址: FC00::7</li>
+<li>IPv6分段处理: IPv6最小MTU1280字节</li>
+</ul>
+<h3 id="IPv4首部"><a href="#IPv4首部" class="headerlink" title="IPv4首部"></a>IPv4首部</h3><ul>
+<li>4bit 版本</li>
+<li>4bit 首部长度</li>
+<li>8bit 区分服务(TOS)</li>
+<li>16bit 总长度(IP包最大长度 2^16 = 65535字节)</li>
+<li>16bit 标识, 用于分片重组</li>
+<li>3bit flags</li>
+<li>13bit 片偏移 单位8字节, 最多表示2^13 * 8 = 65535字节偏移量</li>
+<li>8bit TTL 生存时间</li>
+<li>8bit 上层协议编号</li>
+<li>16bit 首部校验和</li>
+<li>32bit 源地址</li>
+<li>32bit 目标地址</li>
+<li>可选项</li>
+<li>填充</li>
+<li>数据</li>
+</ul>
+<h3 id="IPv6首部"><a href="#IPv6首部" class="headerlink" title="IPv6首部"></a>IPv6首部</h3><ul>
+<li>4bit 版本</li>
+<li>8bit 通信量类, 相当于TOS</li>
+<li>20bit 流标号</li>
+<li>16bit 有效载荷长度</li>
+<li>8bit 下一个首部, 相当于上层协议</li>
+<li>8bit 跳数限制, 相当于TTL</li>
+<li>128bit 源地址</li>
+<li>128bit 目标地址</li>
+<li>IPv6扩展首部: IPv6首部长度固定, 无可选项, 通过扩展首部对功能进行扩展</li>
+</ul>
+<h2 id="IP协议相关技术"><a href="#IP协议相关技术" class="headerlink" title="IP协议相关技术"></a>IP协议相关技术</h2><h3 id="仅凭IP无法完成通信"><a href="#仅凭IP无法完成通信" class="headerlink" title="仅凭IP无法完成通信"></a>仅凭IP无法完成通信</h3><h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><ul>
+<li>域名构成<h3 id="ARP"><a href="#ARP" class="headerlink" title="ARP"></a>ARP</h3></li>
+<li>RARP<h3 id="ICMP"><a href="#ICMP" class="headerlink" title="ICMP"></a>ICMP</h3><h3 id="DHCP"><a href="#DHCP" class="headerlink" title="DHCP"></a>DHCP</h3><blockquote>
+<p>Dynamic Host Configuration Protocol</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="NAT"><a href="#NAT" class="headerlink" title="NAT"></a>NAT</h3><blockquote>
+<p>Network Address Translator<br>用于在本地网络中使用私有地址, 在连接互联网时使用全局IP的技术</p>
+</blockquote>
+<ul>
+<li>NAPT</li>
+<li>NAT-PT(NAPT-PT): 将IPv4首部转为IPv6首部</li>
+<li>问题<ul>
+<li>无法从外部向内部建立连接</li>
+<li>转换表开销<ul>
+<li>改用IPv6</li>
+<li>NAT穿越</li>
+</ul>
+</li>
+<li>NAT重重新启动, TCP连接将被重置</li>
+<li>即时备置2台NAT做容灾备份, TCP连接还是会被断开</li>
+</ul>
+</li>
+</ul>
+<h3 id="IP隧道"><a href="#IP隧道" class="headerlink" title="IP隧道"></a>IP隧道</h3><blockquote>
+<p>网络层首部后面继续追加网络层首部的通信方法</p>
+</blockquote>
+<h3 id="其他相关技术"><a href="#其他相关技术" class="headerlink" title="其他相关技术"></a>其他相关技术</h3><ul>
+<li>IP多播相关技术<ul>
+<li>IGMP(MLD): 向路由器表明想要接收多播消息, 向交换集线器通知想要接受多播的地址.</li>
+</ul>
+</li>
+<li>IP任播</li>
+<li>通信质量控制</li>
+<li>显式拥塞通知(ECN)</li>
+<li>Mobile IP: 子网IP发生变化时, 主机IP地址仍保持不变</li>
+</ul>
+<h2 id="TCP与UDP"><a href="#TCP与UDP" class="headerlink" title="TCP与UDP"></a>TCP与UDP</h2><h3 id="传输层的作用"><a href="#传输层的作用" class="headerlink" title="传输层的作用"></a>传输层的作用</h3><ul>
+<li>传输层指定上层应用程序, 使用端口号做识别码</li>
+<li>服务端程序, 守护进程, inetd(互联网守护进程), 收到客户端请求后复刻(fork)新的进程并转换(exec)为sshd等各个守护进程</li>
+<li>TCP: 面向连接可靠的流协议, 流是不间断的数据结构</li>
+<li>UDP: 不具有可靠性</li>
+<li>Socket: 通信时使用到的操作系统类库(API)</li>
+</ul>
+<h3 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h3><ul>
+<li>用于识别同一台计算机中进行通信的不同应用程序</li>
+<li>采用5个信息识别一个通信: 源IP, 目标IP, 协议号, 源端口, 目标端口.</li>
+<li>0~1023 知名端口号</li>
+<li>1024~49151 用于任何通信用途</li>
+<li>49152~65535 动态分配的端口号</li>
+</ul>
+<h3 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h3><h3 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h3><ul>
+<li>通过序列号与确认应答提高可靠性</li>
+<li>重发超时</li>
+<li>连接管理: 通信开始之前做好通信两端之间的准备工作</li>
+<li>TCP以段为单位发送数据, 最大消息长度(MSS)</li>
+<li>利用窗口控制提高速度, 窗口大小指无需等待ACK而可以继续发送数据的最大值</li>
+<li>窗口控制与重发控制, 滑动窗口, 高速重发控制</li>
+<li>流控制: 让发送端根据接收端的实际接收能力控制发送的数据量</li>
+<li>拥塞控制: 通信一开始通过慢启动算法, 对发送数据量进行控制. 慢启动阀值(拥塞窗口超过阀值, 只允许以 [1数据段字节数/拥塞窗口 * 1数据段字节数] 放大拥塞窗口)</li>
+<li>提高网络利用率的规范<ul>
+<li>Nagle算法: 延迟一段时间再进行数据发送</li>
+<li>延迟确认应答: 收到数据后并不立即返回确认应答</li>
+<li>捎带应答: 确认应答和回执数据通过一个包发送</li>
+</ul>
+</li>
+</ul>
+<h3 id="其他传输层协议"><a href="#其他传输层协议" class="headerlink" title="其他传输层协议"></a>其他传输层协议</h3><ul>
+<li>UDP-Lite</li>
+<li>SCTP: 为多个NIC的主机提供可靠传输</li>
+<li>DCCP</li>
+</ul>
+<h3 id="UDP首部格式"><a href="#UDP首部格式" class="headerlink" title="UDP首部格式"></a>UDP首部格式</h3><ul>
+<li>16bit 源端口号</li>
+<li>16bit 目标端口号</li>
+<li>包长度(首部和数据长度之和), 单位为字节</li>
+<li>校验和</li>
+</ul>
+<h3 id="TCP首部格式"><a href="#TCP首部格式" class="headerlink" title="TCP首部格式"></a>TCP首部格式</h3><ul>
+<li>16bit 源端口号</li>
+<li>16bit 目标端口号</li>
+<li>32bit 序列号</li>
+<li>32bit 确认应答号</li>
+<li>4bit 数据偏移, 单位4字节</li>
+<li>4bit 保留</li>
+<li>8bit 控制位</li>
+<li>16bit 窗口大小</li>
+<li>校验和</li>
+<li>16bit 紧急指针</li>
+<li>选项</li>
+</ul>
+<h2 id="路由协议"><a href="#路由协议" class="headerlink" title="路由协议"></a>路由协议</h2><h3 id="路由控制的定义"><a href="#路由控制的定义" class="headerlink" title="路由控制的定义"></a>路由控制的定义</h3><ul>
+<li>路由器根据路由控制表转发数据包</li>
+<li>静态路由</li>
+<li>动态路由</li>
+</ul>
+<h3 id="路由控制范围"><a href="#路由控制范围" class="headerlink" title="路由控制范围"></a>路由控制范围</h3><ul>
+<li>AS 自治系统</li>
+<li>外部网关协议EGP<ul>
+<li>BGP边界网关协议</li>
+</ul>
+</li>
+<li>内部网关协议IGP<ul>
+<li>RIP 路由信息协议</li>
+<li>RIP2</li>
+<li>OPSF开放式最短路径优先</li>
+</ul>
+</li>
+</ul>
+<h3 id="路由算法"><a href="#路由算法" class="headerlink" title="路由算法"></a>路由算法</h3><ul>
+<li>距离向量算法<ul>
+<li>只有距离和方向信息</li>
+<li>路有收敛: 获得稳定路由信息之前需要一定时间</li>
+<li>极易发生路由循环</li>
+</ul>
+</li>
+<li>链路状态算法<ul>
+<li>每个路由器保持同样的信息才能选择正确的路由</li>
+</ul>
+</li>
+</ul>
+<h3 id="RIP"><a href="#RIP" class="headerlink" title="RIP"></a>RIP</h3><blockquote>
+<p>距离向量型路由协议. 广泛应用于LAN</p>
+</blockquote>
+<ul>
+<li>广播路由控制信息, 每30s一次, 6次未收到信息关闭连接</li>
+<li>根据距离向量确定路由, 单位为跳数.</li>
+<li>使用子网掩码时RIP处理</li>
+<li>RIP中路由变更处理<ul>
+<li>最长距离不超过16</li>
+<li>路由器不再把所受到的路由信息返回给发送端, 水平分割</li>
+<li>有环路的情况<ul>
+<li>毒性逆转, 不是不再发送, 而是发送一个距离为16的消息</li>
+<li>触发更新, 路由发生变化, 不等待30s而是立刻发送出去</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RIP2<ul>
+<li>使用多播而不是广播</li>
+<li>支持子网掩码</li>
+<li>外部路由标志</li>
+<li>身份验证密钥</li>
+</ul>
+</li>
+</ul>
+<h3 id="OSPF"><a href="#OSPF" class="headerlink" title="OSPF"></a>OSPF</h3><blockquote>
+<p>链路状态型路由协议, 支持子网掩码</p>
+</blockquote>
+<ul>
+<li>OSPF是链路状态型路由协议, 可以给每条链路赋予权重</li>
+<li>工作原理<ul>
+<li>HELLO协议进行连接确认</li>
+<li>链路状态更新包<ul>
+<li>网络LSA</li>
+<li>路由器LSA</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>将区域分层化进行细分管理</li>
+</ul>
+<h3 id="BGP"><a href="#BGP" class="headerlink" title="BGP"></a>BGP</h3><blockquote>
+<p>BGP(边界网关协议)是连接不同组织机构的一种协议, 属于EGP(外部网关协议)</p>
+</blockquote>
+<ul>
+<li>BGP是路径向量协议<ul>
+<li>访问列表不仅包含转发方向和距离, 还涵盖途径所有AS的编号, 不属于距离向量型</li>
+<li>网络构造仅用一元化表示, 不属于链路状态型</li>
+</ul>
+</li>
+</ul>
+<h3 id="MPLS"><a href="#MPLS" class="headerlink" title="MPLS"></a>MPLS</h3><blockquote>
+<p>标记交换技术<br>路由技术基于IP地址最长匹配进行转发<br>标记交换对每个IP包设定标记, 根据标记转发</p>
+</blockquote>
+<ul>
+<li>基本动作<ul>
+<li>LSR 标记交换路由器</li>
+<li>LER 标记边缘路由器, 进行标记追加删除操作<ul>
+<li>Push: 附加标记转发</li>
+<li>Swap: 替换标记转发</li>
+<li>Pop: 去掉标记转发</li>
+</ul>
+</li>
+<li>LSP 标记交换路径, 属于单方向通路</li>
+</ul>
+</li>
+<li>优点<ul>
+<li>高速转发</li>
+<li>设置几处必要信息而不是大量路由表</li>
+<li>利用标记生成虚拟路径</li>
+</ul>
+</li>
+</ul>
+<h2 id="应用协议"><a href="#应用协议" class="headerlink" title="应用协议"></a>应用协议</h2><h3 id="远程登录"><a href="#远程登录" class="headerlink" title="远程登录"></a>远程登录</h3><ul>
+<li><p>TELNET</p>
+<blockquote>
+<p>利用TCP一条连接, 向主机发送文字命令并在职级上执行</p>
+</blockquote>
+</li>
+<li><p>SSH</p>
+</li>
+</ul>
+<h3 id="文件传输"><a href="#文件传输" class="headerlink" title="文件传输"></a>文件传输</h3><ul>
+<li>FTP<blockquote>
+<p>两条TCP连接, 一条用来控制, 另一条用于数据传输</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="电子邮件"><a href="#电子邮件" class="headerlink" title="电子邮件"></a>电子邮件</h3><ul>
+<li>MIME: 多种数据格式</li>
+<li>STMP: 发送电子邮件协议, TCP port:25</li>
+<li>POP: 接收端从邮件服务器接收邮件, TCP</li>
+<li>IMAP: 接收电子邮件的协议, 与POP在客户端不同, IMAP在服务端管理邮件</li>
+</ul>
+<h3 id="www"><a href="#www" class="headerlink" title="www"></a>www</h3><ul>
+<li>URL: 标识资源</li>
+<li>HTML</li>
+<li>HTTP</li>
+<li>JavaScript, CGI, Cookie</li>
+</ul>
+<h3 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h3><ul>
+<li>SNMP: 基于UDP/IP, 网络管理中收集必要信息.</li>
+<li>MIB: SNMP中交互的信息, 由监控网络中某个设备接口的众多参数构成</li>
+<li>RMON: 由监控网络上线路的众多参数构成</li>
+</ul>
+<h3 id="其他应用层协议"><a href="#其他应用层协议" class="headerlink" title="其他应用层协议"></a>其他应用层协议</h3><ul>
+<li>多媒体通信实现技术<ul>
+<li>H.323: IP网上传输音视频</li>
+<li>SIP: 与H.322相对的TCP/IP协议</li>
+<li>RTP: UDP实现对媒体通信时, 附加一个表示报文顺序的序列号字段, 同时对报文发送时间进行管理</li>
+</ul>
+</li>
+<li>P2P: 网络上终端或主机不经过服务器直接1对1相互通信</li>
+<li>LDAP: 轻量级目录访问协议, 目录服务指网络上存在的提供相关资源的数据库. 定义了目录树结构, 数据格式, 命名规则, 目录访问顺序和安全认证</li>
+</ul>
+<h2 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h2><h3 id="TCP-IP-与网络安全"><a href="#TCP-IP-与网络安全" class="headerlink" title="TCP/IP 与网络安全"></a>TCP/IP 与网络安全</h3><h3 id="网络安全构成要素"><a href="#网络安全构成要素" class="headerlink" title="网络安全构成要素"></a>网络安全构成要素</h3><ul>
+<li>防火墙<ul>
+<li>过滤/不过滤特定数据包的包过滤防火墙</li>
+<li>数据达到应用后由应用处理并拒绝非法访问的应用网关</li>
+</ul>
+</li>
+<li>IDS: 入侵检测系统</li>
+<li>反病毒/个人防火墙</li>
+</ul>
+<h3 id="加密技术基础"><a href="#加密技术基础" class="headerlink" title="加密技术基础"></a>加密技术基础</h3><ul>
+<li>分层<ul>
+<li>应用层: SSH, SSH-Telnet, PET等远程登录, PGP, S/MIME</li>
+<li>表示层, 传输层: SSL/TLS, SOCKS V5加密</li>
+<li>网络层: IPsec</li>
+<li>数据链路层: Ethernet, WAN加密配置, PPTP(PPP)</li>
+</ul>
+</li>
+<li>对称密码体质与公钥密码体制<ul>
+<li>对称加密(加密解密使用相同密钥): AES, DES</li>
+<li>公钥解密(加密解密使用不同密钥): RSA, DH. 椭圆曲线加密</li>
+</ul>
+</li>
+<li>身份认证技术</li>
+</ul>
+<h3 id="安全协议"><a href="#安全协议" class="headerlink" title="安全协议"></a>安全协议</h3><ul>
+<li>IPsec与VPN: 构建VPN, 在IP首部后面追加”封装安全有效载荷”和”认证首部”, 对此后数据进行加密</li>
+<li>TLS/SSL与HTTPS: HTTPS使用对称加密, 发送其公共密钥采用公钥加密</li>
+<li>IEEE802.1X: 为了接入LAN交换机和无线LAN接入点而对用户进行认证的技术</li>
+</ul>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://book.douban.com/subject/24737674/">图解TCP/IP</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://winterfell-ys.github.io/2020/05/learn-tcpip/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backend/" rel="tag">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/06/tools-iptables/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            iptables入门
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2019/08/tools-php-xdebug/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">PHP-xdebug入门</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2016-2020
+        <i class="ri-heart-fill heart_icon"></i> yusheng WINTERFELL
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/Tokugawa_Aoi_grey.png" alt="厭離穢土 欣求淨土"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
+        src="//music.163.com/outchain/player?type=2&id=22088505&auto=1&height=66"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>

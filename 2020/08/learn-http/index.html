@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    图解HTTP |  
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-learn-http"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  图解HTTP
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/08/learn-http/" class="article-date">
+  <time datetime="2020-08-13T15:42:32.000Z" itemprop="datePublished">2020-08-13</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a> / <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">9 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="了解web及网络基础"><a href="#了解web及网络基础" class="headerlink" title="了解web及网络基础"></a>了解web及网络基础</h2><h3 id="使用HTTP访问Web"><a href="#使用HTTP访问Web" class="headerlink" title="使用HTTP访问Web"></a>使用HTTP访问Web</h3><blockquote>
+<p>根据URL, 浏览器从服务器获取文件资源<br>HTTP 超文本传输协议</p>
+</blockquote>
+<h3 id="HTTP的诞生"><a href="#HTTP的诞生" class="headerlink" title="HTTP的诞生"></a>HTTP的诞生</h3><ul>
+<li>WWW构建技术: HTML, HTTP, URL</li>
+</ul>
+<h3 id="网络基础TCP-IP"><a href="#网络基础TCP-IP" class="headerlink" title="网络基础TCP/IP"></a>网络基础TCP/IP</h3><p>TCP/IP 协议族, HTTP属于其子集</p>
+<ul>
+<li>应用层（HTTP, FTP, DNS）, 传输层（TCP&amp;UDP协议, 端口）, 网络层（IP）, 数据链路层（硬件部分）</li>
+</ul>
+<h3 id="IP-TCP-DNS"><a href="#IP-TCP-DNS" class="headerlink" title="IP, TCP, DNS"></a>IP, TCP, DNS</h3><ul>
+<li>APR协议, 解析IP地址反查MAC地址</li>
+<li>TCP提供可靠的字节流服务, 三次握手SYN, ACK</li>
+<li>DNS通过域名反查IP地址</li>
+</ul>
+<h3 id="各协议与HTTP的关系"><a href="#各协议与HTTP的关系" class="headerlink" title="各协议与HTTP的关系"></a>各协议与HTTP的关系</h3><ul>
+<li>URL-&gt;DNS-&gt;HTTP报文-&gt;TCP可靠传输报文段-&gt;IP搜索地址并传送-&gt;TCP重组-&gt;HTTP内容处理-&gt;返回</li>
+</ul>
+<h3 id="URI和URL"><a href="#URI和URL" class="headerlink" title="URI和URL"></a>URI和URL</h3><ul>
+<li>URI统一资源标识符（URL统一资源定位）</li>
+<li>格式: 协议方案名, 登录信息, 服务器地址, 端口号, 带层次的文件路径, 查询字符串, 片段标识符</li>
+</ul>
+<h2 id="简单的HTTP协议"><a href="#简单的HTTP协议" class="headerlink" title="简单的HTTP协议"></a>简单的HTTP协议</h2><h3 id="用于客户端和服务端通信"><a href="#用于客户端和服务端通信" class="headerlink" title="用于客户端和服务端通信"></a>用于客户端和服务端通信</h3><p>一条通信线路上, 服务端, 客户端角色确定</p>
+<h3 id="通过请求和响应交换达成通信"><a href="#通过请求和响应交换达成通信" class="headerlink" title="通过请求和响应交换达成通信"></a>通过请求和响应交换达成通信</h3><ul>
+<li>请求报文: 请求方法, 请求URI, 协议版本, 可选的请求首部字段, 内容实体</li>
+<li>响应报文: 协议版本, 状态码, 原因短语, 响应时间, 可选的响应首部字段, 实体</li>
+</ul>
+<h3 id="HTTP是不保存状态的协议"><a href="#HTTP是不保存状态的协议" class="headerlink" title="HTTP是不保存状态的协议"></a>HTTP是不保存状态的协议</h3><h3 id="请求URI定位资源"><a href="#请求URI定位资源" class="headerlink" title="请求URI定位资源"></a>请求URI定位资源</h3><h3 id="告知服务器意图的HTTP方法"><a href="#告知服务器意图的HTTP方法" class="headerlink" title="告知服务器意图的HTTP方法"></a>告知服务器意图的HTTP方法</h3><ul>
+<li>GET 获取资源</li>
+<li>POST 传输实体主体</li>
+<li>PUR 传输文件</li>
+<li>HEAD 获得报文首部</li>
+<li>DELETE 删除文件</li>
+<li>OPTIONS 询问支持的方法</li>
+<li>TRACE 追踪路径</li>
+<li>CONNECT 要求用隧道协议连接代理</li>
+</ul>
+<h3 id="使用方法下达命令"><a href="#使用方法下达命令" class="headerlink" title="使用方法下达命令"></a>使用方法下达命令</h3><h3 id="持久连接节省通信量"><a href="#持久连接节省通信量" class="headerlink" title="持久连接节省通信量"></a>持久连接节省通信量</h3><ul>
+<li>keep-alive 任意端没有明确提出断开连接, 保持TCP状态</li>
+<li>管线化: 并行发送多个请求</li>
+</ul>
+<h3 id="使用Cookie的状态管理"><a href="#使用Cookie的状态管理" class="headerlink" title="使用Cookie的状态管理"></a>使用Cookie的状态管理</h3><h2 id="HTTP报文内的HTTP信息"><a href="#HTTP报文内的HTTP信息" class="headerlink" title="HTTP报文内的HTTP信息"></a>HTTP报文内的HTTP信息</h2><h3 id="HTTP报文"><a href="#HTTP报文" class="headerlink" title="HTTP报文"></a>HTTP报文</h3><p>多行数据构成的字符串文本, CR+LF做换行符</p>
+<h3 id="请求报文和响应报文的结构"><a href="#请求报文和响应报文的结构" class="headerlink" title="请求报文和响应报文的结构"></a>请求报文和响应报文的结构</h3><h3 id="编码提升传输速率"><a href="#编码提升传输速率" class="headerlink" title="编码提升传输速率"></a>编码提升传输速率</h3><h3 id="发送多种数据的多部分对象集合"><a href="#发送多种数据的多部分对象集合" class="headerlink" title="发送多种数据的多部分对象集合"></a>发送多种数据的多部分对象集合</h3><ul>
+<li>MIME 多用途因特网邮件扩展</li>
+<li>HTTP的多部分对象:<ul>
+<li>multipart/form-data</li>
+<li>multipart/byteranges</li>
+</ul>
+</li>
+<li>使用需要在首部加上Content-Type</li>
+</ul>
+<h3 id="获取部分内容的范围请求"><a href="#获取部分内容的范围请求" class="headerlink" title="获取部分内容的范围请求"></a>获取部分内容的范围请求</h3><h3 id="内容协商返回最合适的内容"><a href="#内容协商返回最合适的内容" class="headerlink" title="内容协商返回最合适的内容"></a>内容协商返回最合适的内容</h3><ul>
+<li>首部字段<ul>
+<li>Accept</li>
+<li>Accept-Charset</li>
+<li>Accept-Encoding</li>
+<li>Accept-Language</li>
+<li>Content-Language</li>
+</ul>
+</li>
+</ul>
+<h2 id="返回结果的HTTP状态码"><a href="#返回结果的HTTP状态码" class="headerlink" title="返回结果的HTTP状态码"></a>返回结果的HTTP状态码</h2><h3 id="状态码告知服务器返回的请求结果"><a href="#状态码告知服务器返回的请求结果" class="headerlink" title="状态码告知服务器返回的请求结果"></a>状态码告知服务器返回的请求结果</h3><h3 id="2XX"><a href="#2XX" class="headerlink" title="2XX"></a>2XX</h3><ul>
+<li>200 OK</li>
+<li>204 No Content(不含实体主体)</li>
+<li>206 Partial Content(响应范围请求)</li>
+</ul>
+<h3 id="3XX"><a href="#3XX" class="headerlink" title="3XX"></a>3XX</h3><ul>
+<li>301 Moved Permanently 永久重定向</li>
+<li>302 Found 临时重定向（禁止POST变换GET, 但不一定遵守）</li>
+<li>303 See Other 与302功能相同, 明确表示客户端应采用GET获取资源</li>
+<li>304 Not Modified 资源未改变</li>
+<li>307 Temporary Redirect 临时重定向同302, 禁止POST变换GET</li>
+</ul>
+<h3 id="4XX"><a href="#4XX" class="headerlink" title="4XX"></a>4XX</h3><ul>
+<li>400 Bad Request 报文存在语法错误</li>
+<li>401 Unauthorized 需要HTTP认证（BASIC, <strong>DIGEST认证</strong>）</li>
+<li>403 Forbidden 拒绝</li>
+<li>404 Not Found 未找到</li>
+</ul>
+<h3 id="5XX-服务器错误"><a href="#5XX-服务器错误" class="headerlink" title="5XX 服务器错误"></a>5XX 服务器错误</h3><ul>
+<li>500 Internal Server Error 服务端错误</li>
+<li>503 Service Unavailable 服务端无法处理请求</li>
+</ul>
+<h2 id="与HTTP协作的Web服务器"><a href="#与HTTP协作的Web服务器" class="headerlink" title="与HTTP协作的Web服务器"></a>与HTTP协作的Web服务器</h2><h3 id="用单台虚拟机实现多个域名"><a href="#用单台虚拟机实现多个域名" class="headerlink" title="用单台虚拟机实现多个域名"></a>用单台虚拟机实现多个域名</h3><p>虚拟主机功能, 在Host首部指定主机名</p>
+<h3 id="通信数据转发程序-代理-网关-隧道"><a href="#通信数据转发程序-代理-网关-隧道" class="headerlink" title="通信数据转发程序: 代理, 网关, 隧道"></a>通信数据转发程序: 代理, 网关, 隧道</h3><ul>
+<li>代理<ul>
+<li>接受请求并抓发给服务器, 将响应转发给客户端</li>
+<li>不改变URL</li>
+<li>可级联</li>
+<li>缓存技术减少流量, 访问控制, 日志</li>
+</ul>
+</li>
+<li>网关<ul>
+<li>转发其他服务器通信数据的服务器, 对请求进行处理</li>
+<li>能使线路上的服务器提供非HTTP协议服务</li>
+<li>提高安全性</li>
+</ul>
+</li>
+<li>隧道<ul>
+<li>在客户服务端进行中转, 保持双方通信连接 的应用程序</li>
+<li>SSL加密手段</li>
+<li>不解析HTTP</li>
+</ul>
+</li>
+</ul>
+<h3 id="保存资源的缓存"><a href="#保存资源的缓存" class="headerlink" title="保存资源的缓存"></a>保存资源的缓存</h3><p>可避免多次从源服务器转发资源</p>
+<ul>
+<li>有效期限</li>
+<li>客户端缓存</li>
+</ul>
+<h2 id="HTTP首部"><a href="#HTTP首部" class="headerlink" title="HTTP首部"></a>HTTP首部</h2><h3 id="HTTP报文首部"><a href="#HTTP报文首部" class="headerlink" title="HTTP报文首部"></a>HTTP报文首部</h3><p>请求中, HTTP报文由方法, URI, HTTP版本, HTTP首部字段等部分构成<br>响应中, HTTP报文由版本, 状态码, HTTP首部构成</p>
+<h3 id="HTTP首部字段"><a href="#HTTP首部字段" class="headerlink" title="HTTP首部字段"></a>HTTP首部字段</h3><ul>
+<li>提供报文主体大小, 使用的语言, 认证信息</li>
+<li>HTTP首部字段结构, 由字段名: 字段值 构成</li>
+<li>类型<ul>
+<li>通用首部字段</li>
+<li>请求首部字段</li>
+<li>响应首部字段</li>
+<li>实体首部字段</li>
+</ul>
+</li>
+<li>一览 P80</li>
+<li>非HTTP/1.1首部字段<ul>
+<li>Cookie</li>
+<li>Set-Cookie</li>
+<li>Content-Disposition</li>
+</ul>
+</li>
+<li>端到端首部 和 逐跳首部<ul>
+<li>Connection, Keep-Alive, Proxy-Authenticate, Proxy-Authorization, Trailer, TE, Transfor-Encoding, Upgrade</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP-1-1-通用首部字段"><a href="#HTTP-1-1-通用首部字段" class="headerlink" title="HTTP/1.1 通用首部字段"></a>HTTP/1.1 通用首部字段</h3><ul>
+<li>Cache-Control 操作缓存工作机制<ul>
+<li>表示是否缓存的指令<ul>
+<li>public</li>
+<li>private</li>
+<li>no-cache <strong>不缓存过期资源</strong></li>
+</ul>
+</li>
+<li>控制可执行缓存对象的指令<ul>
+<li>no-store</li>
+</ul>
+</li>
+<li>指定缓存期限和认证的指令<ul>
+<li>s-maxage 只适用于供多位用户使用的公共缓存服务器</li>
+<li>max-age</li>
+<li>min-fresh</li>
+<li>max-stale</li>
+<li>only-if-cached</li>
+<li>must-revalidate</li>
+<li>proxy-revalidate</li>
+<li>no-transform</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Connection 控制不再转发给代理的首部字段 &amp;&amp; 管理持久连接</li>
+<li>Date</li>
+<li>Pragma HTTP/1.0向后兼容</li>
+<li>Trailer 报文主体后使用首部字段</li>
+<li>Transfer-Encoding 编码方式</li>
+<li>Upgrade</li>
+<li>Via</li>
+<li>Warning</li>
+</ul>
+<h3 id="请求首部字段"><a href="#请求首部字段" class="headerlink" title="请求首部字段"></a>请求首部字段</h3><ul>
+<li>Accept (q=权重 默认1.0)</li>
+<li>Accept-Charset (q=权重)</li>
+<li>Accept-Encoding</li>
+<li>Accept-Language</li>
+<li>Authorization</li>
+<li>Expect</li>
+<li>From</li>
+<li>Host</li>
+<li>If-Match</li>
+<li>If-Modified-Since</li>
+<li>If-None-Match</li>
+<li>If-Range</li>
+<li>If-Unmodified-Since</li>
+<li>Max-Forwards</li>
+<li>Proxy-Authorization</li>
+<li>Range</li>
+<li>Referer</li>
+<li>TE</li>
+<li>User-Agent</li>
+</ul>
+<h3 id="响应首部字段"><a href="#响应首部字段" class="headerlink" title="响应首部字段"></a>响应首部字段</h3><ul>
+<li>Accept-Ranges</li>
+<li>Age</li>
+<li>ETag /W区分弱ETag</li>
+<li>Location</li>
+<li>Proxy-Authenticate</li>
+<li>Retry-After</li>
+<li>Server</li>
+<li>Vary</li>
+<li>WWW-Authenticate</li>
+</ul>
+<h3 id="实体首部字段"><a href="#实体首部字段" class="headerlink" title="实体首部字段"></a>实体首部字段</h3><ul>
+<li>Allow</li>
+<li>Connect-Encoding</li>
+<li>Content-Language</li>
+<li>Content-Length</li>
+<li>Content-Location</li>
+<li>Content-MD5</li>
+<li>Content-Range</li>
+<li>Content-Type</li>
+<li>Expires</li>
+<li>Last-Modified</li>
+</ul>
+<h3 id="为Cookie服务的首部字段"><a href="#为Cookie服务的首部字段" class="headerlink" title="为Cookie服务的首部字段"></a>为Cookie服务的首部字段</h3><ul>
+<li>Set-Cookie</li>
+<li>Cookie</li>
+</ul>
+<h3 id="其他首部字段"><a href="#其他首部字段" class="headerlink" title="其他首部字段"></a>其他首部字段</h3><ul>
+<li>X-Frame-Options</li>
+<li>X-XSS-Protection</li>
+<li>DNT</li>
+<li>P3P</li>
+</ul>
+<h2 id="确保Web安全的HTTPS"><a href="#确保Web安全的HTTPS" class="headerlink" title="确保Web安全的HTTPS"></a>确保Web安全的HTTPS</h2><blockquote>
+<p>HTTP 存在信息窃听, 身份伪装等安全问题</p>
+</blockquote>
+<h3 id="HTTP缺点"><a href="#HTTP缺点" class="headerlink" title="HTTP缺点"></a>HTTP缺点</h3><ul>
+<li>通信使用明文可能会被窃听<ul>
+<li>TCP/IP是可能被窃听的网络</li>
+<li>加密处理防止被窃听<ul>
+<li>通信加密: SSL安全套阶层 + TLS安全传输层协议</li>
+<li>内容加密: (报文主体不加密)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>不验证通信方的神风就可能遭遇伪装<ul>
+<li>任何人都可发起请求</li>
+<li>查明对手的证书</li>
+<li>无法证明报文完整性</li>
+<li>如何防止篡改(散列值检验)</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP-加密-认证-完整性保护-HTTPS"><a href="#HTTP-加密-认证-完整性保护-HTTPS" class="headerlink" title="HTTP+加密+认证+完整性保护=HTTPS"></a>HTTP+加密+认证+完整性保护=HTTPS</h3><ul>
+<li>添加了加密及认证机制的HTTP成为HTTPS</li>
+<li>HTTPS是身披SSL外壳的HTTP</li>
+<li>相互交换密钥的公开蜜钥加密技术<ul>
+<li>共享密钥加密的困境(对称加密易被窃取密钥)</li>
+<li>使用两把密钥的公开密钥加密(安全 但较慢)</li>
+<li>HTTPS采用混合加密机制</li>
+</ul>
+</li>
+<li>证明公开密钥正确性的证书<ul>
+<li>CA: 数字证书认证机构</li>
+<li>可证明组织真实性的EV SSL证书</li>
+<li>用以确认客户端的客户端证书</li>
+<li>认证机构信誉第一</li>
+<li>由自由认证机构颁发的证书为自签名证书</li>
+</ul>
+</li>
+<li>HTTPS的安全通信机制<ul>
+<li>SSL 和 TLS</li>
+<li>SSL 通信慢, 消耗CPU处理慢</li>
+</ul>
+</li>
+</ul>
+<h2 id="确认访问用户身份的认证"><a href="#确认访问用户身份的认证" class="headerlink" title="确认访问用户身份的认证"></a>确认访问用户身份的认证</h2><h3 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h3><ul>
+<li>HTTP认证方式<ul>
+<li>BASIC 认证(id/secret base64明文发送)</li>
+<li>DIGEST 认证(质询码+MD5)</li>
+<li><strong>SSL 客户端认证</strong><ul>
+<li>基于客户端证书(客户端安装)</li>
+</ul>
+</li>
+<li>FormBase 认证</li>
+</ul>
+</li>
+</ul>
+<h2 id="基于HTTP的功能追加协议"><a href="#基于HTTP的功能追加协议" class="headerlink" title="基于HTTP的功能追加协议"></a>基于HTTP的功能追加协议</h2><h3 id="基于HTTP"><a href="#基于HTTP" class="headerlink" title="基于HTTP"></a>基于HTTP</h3><ul>
+<li>满足需求但性能未必最优<ul>
+<li>一条连接只能发送一个请求</li>
+<li>请求只能从客户端开始, 客户端不接受响应以外的指令</li>
+<li>首部未经压缩, 延迟大</li>
+<li>冗长的首部, 浪费</li>
+<li>任意压缩格式, 非强制</li>
+</ul>
+</li>
+</ul>
+<h3 id="Ajax"><a href="#Ajax" class="headerlink" title="Ajax"></a>Ajax</h3><ul>
+<li>局部更新</li>
+<li>未解决HTTP问题<h3 id="Comet-通过延迟应答-实现push功能"><a href="#Comet-通过延迟应答-实现push功能" class="headerlink" title="Comet(通过延迟应答, 实现push功能)"></a>Comet(通过延迟应答, 实现push功能)</h3></li>
+<li>连接持续时间变长 消耗更多资源</li>
+<li>局部更新</li>
+<li>未解决HTTP问题<h3 id="SDPY"><a href="#SDPY" class="headerlink" title="SDPY"></a>SDPY</h3></li>
+<li>在应用层与传输层之间加入会话层运作</li>
+<li>采用HTTP建立通信连接</li>
+<li>额外功能<ul>
+<li>单一的TCP连接, 可处理无限多个HTTP请求</li>
+<li>赋予请求优先级</li>
+<li>压缩HTTP首部</li>
+<li>推送功能</li>
+<li>服务器提示功能<h3 id="WebSocket"><a href="#WebSocket" class="headerlink" title="WebSocket"></a>WebSocket</h3></li>
+</ul>
+</li>
+<li>建立在HTTP基础上, 连接发起方仍是客户端</li>
+<li>一旦建立WebSocket 通信连接, 任一方可直接向对方发送报文</li>
+<li>额外功能<ul>
+<li>推送功能</li>
+<li>减少通信量</li>
+</ul>
+</li>
+<li>连接步骤<ul>
+<li>HTTP建立连接</li>
+<li>握手请求 Upgrade</li>
+<li>握手响应 101 HTTP-Code<h3 id="HTTP-2-0"><a href="#HTTP-2-0" class="headerlink" title="HTTP/2.0"></a>HTTP/2.0</h3><h3 id="WebDAV"><a href="#WebDAV" class="headerlink" title="WebDAV"></a>WebDAV</h3></li>
+</ul>
+</li>
+<li>web服务器直接进行文件操作的分布式文件系统</li>
+</ul>
+<h2 id="构建Web内容的技术"><a href="#构建Web内容的技术" class="headerlink" title="构建Web内容的技术"></a>构建Web内容的技术</h2><h3 id="HTML"><a href="#HTML" class="headerlink" title="HTML"></a>HTML</h3><ul>
+<li>HTML 超文本标记语言, 4.01版本(HTML5 2014年)</li>
+<li>CSS 层叠样式表 文档结构和设计分离, 达到解耦</li>
+</ul>
+<h3 id="动态HTML"><a href="#动态HTML" class="headerlink" title="动态HTML"></a>动态HTML</h3><ul>
+<li>JS利用DOM(文档对象模型)指定变动元素</li>
+</ul>
+<h3 id="Web应用"><a href="#Web应用" class="headerlink" title="Web应用"></a>Web应用</h3><ul>
+<li>通用网关接口CGI</li>
+</ul>
+<h3 id="因Java而普及的Servlet"><a href="#因Java而普及的Servlet" class="headerlink" title="因Java而普及的Servlet"></a>因Java而普及的Servlet</h3><ul>
+<li>解决CGI问题(复用进程)</li>
+</ul>
+<h3 id="数据发布的格式及语言"><a href="#数据发布的格式及语言" class="headerlink" title="数据发布的格式及语言"></a>数据发布的格式及语言</h3><ul>
+<li>XML 可扩展标记语言</li>
+<li>发布更新信息的RSS, 简易信息聚合</li>
+<li>JSON JS对象表示法, 轻量级数据标记语言</li>
+</ul>
+<h2 id="Web的攻击技术"><a href="#Web的攻击技术" class="headerlink" title="Web的攻击技术"></a>Web的攻击技术</h2><h3 id="HTTP不具备安全功能"><a href="#HTTP不具备安全功能" class="headerlink" title="HTTP不具备安全功能"></a>HTTP不具备安全功能</h3><h3 id="在客户端即可篡改请求"><a href="#在客户端即可篡改请求" class="headerlink" title="在客户端即可篡改请求"></a>在客户端即可篡改请求</h3><h3 id="针对Web的攻击模式"><a href="#针对Web的攻击模式" class="headerlink" title="针对Web的攻击模式"></a>针对Web的攻击模式</h3><ul>
+<li>主动攻击<ul>
+<li>SQL注入</li>
+<li>OS命令</li>
+</ul>
+</li>
+<li>被动攻击<ul>
+<li>(钓鱼网站)</li>
+</ul>
+</li>
+</ul>
+<h3 id="因输出值转义不完全引发的安全漏洞"><a href="#因输出值转义不完全引发的安全漏洞" class="headerlink" title="因输出值转义不完全引发的安全漏洞"></a>因输出值转义不完全引发的安全漏洞</h3><ul>
+<li>XSS 跨站脚本攻击<ul>
+<li>窃取个人信息</li>
+<li>窃取Cookie</li>
+</ul>
+</li>
+<li>SQL注入</li>
+<li>OS命令注入攻击</li>
+<li>HTTP首部注入攻击</li>
+<li>邮件首部注入攻击</li>
+<li>目录遍历攻击</li>
+<li>远程文件包含漏洞</li>
+</ul>
+<h3 id="因设置或设计缺陷引发的安全漏洞"><a href="#因设置或设计缺陷引发的安全漏洞" class="headerlink" title="因设置或设计缺陷引发的安全漏洞"></a>因设置或设计缺陷引发的安全漏洞</h3><ul>
+<li>强制浏览</li>
+<li>不正确错误消息处理</li>
+<li>开放重定向</li>
+</ul>
+<h3 id="因会话管理疏忽引发的安全漏洞"><a href="#因会话管理疏忽引发的安全漏洞" class="headerlink" title="因会话管理疏忽引发的安全漏洞"></a>因会话管理疏忽引发的安全漏洞</h3><ul>
+<li>会话劫持</li>
+<li>会话固定加攻击</li>
+<li>跨站请求伪造</li>
+</ul>
+<h3 id="其他安全漏洞"><a href="#其他安全漏洞" class="headerlink" title="其他安全漏洞"></a>其他安全漏洞</h3><ul>
+<li>密码破解</li>
+<li>点击劫持</li>
+<li>Dos攻击</li>
+<li>后门程序</li>
+</ul>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://www.amazon.cn/dp/B0153170B2/ref=sr_1_1?__mk_zh_CN=%E4%BA%9A%E9%A9%AC%E9%80%8A%E7%BD%91%E7%AB%99&keywords=%E5%9B%BE%E8%A7%A3http&qid=1600532256&sr=8-1">图解HTTP</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://winterfell-ys.github.io/2020/08/learn-http/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backend/" rel="tag">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Frontend/" rel="tag">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/" rel="tag">HTTP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/" rel="tag">TCP/IP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/08/genee-front-engineer-gpui/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            GPUI框架入门
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/08/tips-ddos/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">DDOS简介</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2016-2020
+        <i class="ri-heart-fill heart_icon"></i> yusheng WINTERFELL
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/Tokugawa_Aoi_grey.png" alt="厭離穢土 欣求淨土"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
+        src="//music.163.com/outchain/player?type=2&id=22088505&auto=1&height=66"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>

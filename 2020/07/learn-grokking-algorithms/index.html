@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    算法图解 |  
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/favicon.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-learn-grokking-algorithms"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  算法图解
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/07/learn-grokking-algorithms/" class="article-date">
+  <time datetime="2020-07-05T16:11:34.000Z" itemprop="datePublished">2020-07-06</time>
+</a> 
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">学习笔记</a> / <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/">读书笔记</a>
+  </div>
+  
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="算法简介"><a href="#算法简介" class="headerlink" title="算法简介"></a>算法简介</h2><h3 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h3><h3 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h3><blockquote>
+<p>O(log2 n)</p>
+</blockquote>
+<h3 id="大O表示法"><a href="#大O表示法" class="headerlink" title="大O表示法"></a>大O表示法</h3><ul>
+<li>O(log2 n) 对数时间 二分查找</li>
+<li>O(n) 线性时间 简单查找</li>
+<li>O(n * log2 n) 快排</li>
+<li>O(n^2) 选择排序</li>
+<li>O(n!) 旅行商问题<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3></li>
+<li>二分查找比简单查找快的多</li>
+<li>O(log2 n) 比O(n)快</li>
+<li>算法运行时间不已秒为单位</li>
+<li>算法运行时间是从其增速角度度量的</li>
+<li>算法运行时间用大O表示法表示</li>
+</ul>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="内存工作原理"><a href="#内存工作原理" class="headerlink" title="内存工作原理"></a>内存工作原理</h3><h3 id="数组和链表"><a href="#数组和链表" class="headerlink" title="数组和链表"></a>数组和链表</h3><h3 id="选择排序-1"><a href="#选择排序-1" class="headerlink" title="选择排序"></a>选择排序</h3><ul>
+<li>O(n^2)<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3></li>
+<li>计算机内存犹如一大堆抽屉</li>
+<li>存储多个元素时, 可选择数组或链表</li>
+<li>所有的元素都在一起</li>
+<li>链表的元素是分开的, 每个元素存储了下一个元素的地址</li>
+<li>数组的读取速度很快</li>
+<li>链表的插入和删除速度很快</li>
+<li>同一个数组中, 所有元素类型必须相同</li>
+</ul>
+<h2 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h2><h3 id="递归-1"><a href="#递归-1" class="headerlink" title="递归"></a>递归</h3><h3 id="基线条件和递归条件"><a href="#基线条件和递归条件" class="headerlink" title="基线条件和递归条件"></a>基线条件和递归条件</h3><blockquote>
+<p>每个递归函数都有两部分: 基线条件(函数不再调用自己)和递归条件(函数调用自己)</p>
+</blockquote>
+<h3 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h3><blockquote>
+<p>调用另一个函数时, 当前函数暂停并处于未完成状态. 该函数的所有变量的值都还在内存中</p>
+</blockquote>
+<ul>
+<li>递归栈 存储详尽的信息需要大量内存, 每个函数调用都要占用一定的内存.<ul>
+<li>重新编写代码 转而使用循环</li>
+<li><strong>使用尾递归</strong></li>
+</ul>
+</li>
+</ul>
+<h3 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>递归指的是调用自己的函数</li>
+<li>每个递归函数都要两个条件 基线条件和递归条件</li>
+<li>栈的两种操作: 压入和弹出</li>
+<li>所有函数调用都进入调用栈</li>
+<li>调用栈可能很长这将占用大量内存</li>
+</ul>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><h3 id="分而治之D-amp-C"><a href="#分而治之D-amp-C" class="headerlink" title="分而治之D&amp;C"></a>分而治之D&amp;C</h3><h3 id="快速排序-1"><a href="#快速排序-1" class="headerlink" title="快速排序"></a>快速排序</h3><h3 id="再谈大O表示法"><a href="#再谈大O表示法" class="headerlink" title="再谈大O表示法"></a>再谈大O表示法</h3><ul>
+<li>平均情况</li>
+<li>最糟情况<blockquote>
+<p>快速排序, 平均(最佳)情况 有O(log2 n)层, 最差情况有O(n)层, 每一层均需处理n个元素, O(n) 即<strong>快排最差情况O(n^2), 平均情况O(log2n)</strong></p>
+</blockquote>
+</li>
+</ul>
+<h3 id="小结-3"><a href="#小结-3" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>D&amp;C将问题逐步分解. 处理问题时, 基线条件很可能是空数组或只包含1个元素的数组</li>
+<li>实现快速排序, 随机选用基准值元素, 平均时间为O(n * log2 n)</li>
+<li>大O表示法中常量有时候事关重大, e.g. 快速排序O(n * log2 n)快于合并排序O(n * log2 n)</li>
+<li>比较简单查找和二分查找时, 常量无关, 因为列表很长时O(log2 n) 比 O(n)快得多</li>
+</ul>
+<h2 id="散列表"><a href="#散列表" class="headerlink" title="散列表"></a>散列表</h2><h3 id="散列函数"><a href="#散列函数" class="headerlink" title="散列函数"></a>散列函数</h3><ul>
+<li>一致性</li>
+<li>不同输入映射到不同数字<blockquote>
+<p>包含额外逻辑的数据结构</p>
+</blockquote>
+</li>
+</ul>
+<h3 id="应用案例"><a href="#应用案例" class="headerlink" title="应用案例"></a>应用案例</h3><ul>
+<li>小结(适用于)<ul>
+<li>仿真映射关系</li>
+<li>防止重复(每人仅投一票例子)</li>
+<li>缓存</li>
+</ul>
+</li>
+</ul>
+<h3 id="冲突"><a href="#冲突" class="headerlink" title="冲突"></a>冲突</h3><blockquote>
+<p>不同输入映射到同输出情况, 常见解决方式是输出位置保存链表</p>
+</blockquote>
+<ul>
+<li>散列函数很重要, 理想情况是,将键均匀映射到散列表不同位置</li>
+<li>散列表存储的链表很长, 散列表速度将急剧下降(散列函数好, 链表不会很长)</li>
+</ul>
+<h3 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h3><ul>
+<li>避免冲突<ul>
+<li>较低的填装因子(数组中被占用的位置数)</li>
+<li>较好的散列函数</li>
+</ul>
+</li>
+</ul>
+<h3 id="小结-4"><a href="#小结-4" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>结合散列函数 和 数组 创建散列表</li>
+<li>使用最大限度减少冲突的散列函数</li>
+<li>查, 插, 删速度都非常快</li>
+<li>散列表适用于仿真映射</li>
+<li>装填因子大于0.7, 调整散列表长度</li>
+<li>用于缓存</li>
+<li>适合用于防止重复</li>
+</ul>
+<h2 id="广度优先搜索"><a href="#广度优先搜索" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h2><h3 id="图简介"><a href="#图简介" class="headerlink" title="图简介"></a>图简介</h3><h3 id="图是什么"><a href="#图是什么" class="headerlink" title="图是什么"></a>图是什么</h3><h3 id="广度优先搜索-1"><a href="#广度优先搜索-1" class="headerlink" title="广度优先搜索"></a>广度优先搜索</h3><blockquote>
+<p>找到的不仅是A到B的路径, 而且是最短路径</p>
+</blockquote>
+<ul>
+<li>队列</li>
+</ul>
+<h3 id="实现图"><a href="#实现图" class="headerlink" title="实现图"></a>实现图</h3><blockquote>
+<p>散列表实现图(由多个节点, 且与临近节点相连)</p>
+</blockquote>
+<ul>
+<li>有向图 &amp; 无向图</li>
+</ul>
+<h3 id="实现算法"><a href="#实现算法" class="headerlink" title="实现算法"></a>实现算法</h3><ul>
+<li>运行时间O(V+E) 人数+边数</li>
+<li><strong>拓扑排序</strong>(列表有序), 根据图创建有序列表</li>
+<li>树</li>
+</ul>
+<h3 id="小结-5"><a href="#小结-5" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>广度优先搜索指出是否有A到B的路径</li>
+<li>广度优先搜索指出A到B的最短路径(若有)</li>
+<li>面临类似寻找最短路径问题, 使用图创建模型, 再用广度优先搜索解决问题</li>
+<li>有向图边为箭头, 指定关系的方向</li>
+<li>无向图边不带箭头, 关系双向</li>
+<li>队列FIFO</li>
+<li>栈LIFO</li>
+<li>需要按加入顺序检查搜索列表的人, 否则找到的不是最短路径, 故使用队列</li>
+<li>经过检查的人不再次检查, 否则导致无限循环</li>
+</ul>
+<h2 id="Dijkstra"><a href="#Dijkstra" class="headerlink" title="Dijkstra"></a>Dijkstra</h2><h3 id="使用狄克斯特拉算法"><a href="#使用狄克斯特拉算法" class="headerlink" title="使用狄克斯特拉算法"></a>使用狄克斯特拉算法</h3><h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><ul>
+<li>权重</li>
+<li>只适用于DAG 有向无环图<h3 id="换钢琴"><a href="#换钢琴" class="headerlink" title="换钢琴"></a>换钢琴</h3></li>
+<li>找出开销最低节点, 并更新其邻居开销<h3 id="负权边"><a href="#负权边" class="headerlink" title="负权边"></a>负权边</h3></li>
+<li>不可使用Dijkstra, 原因: 已处理过的节点有可能被更新开销<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3></li>
+<li>Graph{Hash Table}</li>
+<li>Cost{Hash Table}</li>
+<li>Parent{Hash Table}</li>
+<li>Processed[]</li>
+</ul>
+<h3 id="小结-6"><a href="#小结-6" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>广度优先搜索用于非加权图查找最短路径</li>
+<li>狄克斯特拉  用于加权图中查找最短路径</li>
+<li>仅当权重为正, Dijkstra才管用, 否则使用贝尔曼-福特算法</li>
+</ul>
+<h2 id="贪婪算法"><a href="#贪婪算法" class="headerlink" title="贪婪算法"></a>贪婪算法</h2><h3 id="教室调度问题"><a href="#教室调度问题" class="headerlink" title="教室调度问题"></a>教室调度问题</h3><blockquote>
+<p>每步选择局部最优解, 最终得到的就是全局最优解</p>
+</blockquote>
+<h3 id="背包问题"><a href="#背包问题" class="headerlink" title="背包问题"></a>背包问题</h3><blockquote>
+<p>贪婪策略不能获得最优解, 但非常接近</p>
+</blockquote>
+<h3 id="集合覆盖问题"><a href="#集合覆盖问题" class="headerlink" title="集合覆盖问题"></a>集合覆盖问题</h3><h3 id="NP完全问题"><a href="#NP完全问题" class="headerlink" title="NP完全问题"></a>NP完全问题</h3><ul>
+<li>e.g. 旅行商问题</li>
+<li>识别<ul>
+<li>元素少运行速度快, 随着元素增加, 速度慢</li>
+<li>涉及所有组合的问题, 通常是NP完全问题</li>
+<li>不能将问题分成小问题, 必须考虑各种可能情况, 可能是NP完全问题</li>
+<li>涉及序列且难以解决, 可能是NP完全问题</li>
+<li>涉及集合且难以解决, 可能是NP完全问题</li>
+<li>问题可转换成集合问题或旅行商问题, 肯定是NP完全问题</li>
+</ul>
+</li>
+</ul>
+<h3 id="小结-7"><a href="#小结-7" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>贪婪算法寻找局部最优解, 企图以这种方式获得全部最优解</li>
+<li>NP完全问题没有找到快速解决方案</li>
+<li>面临NP完全问题, 最佳做法为近似算法</li>
+<li>贪婪算法易于实现, 运算速度快, 是不错的近似算法</li>
+</ul>
+<h2 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h2><h3 id="背包问题-1"><a href="#背包问题-1" class="headerlink" title="背包问题"></a>背包问题</h3><ul>
+<li>比较更大价值<ul>
+<li>Cell[i-1][j]</li>
+<li>当前商品价值 + Cell[i-1][j-当前商品重量]</li>
+</ul>
+</li>
+</ul>
+<h3 id="背包问题FAQ"><a href="#背包问题FAQ" class="headerlink" title="背包问题FAQ"></a>背包问题FAQ</h3><ul>
+<li>在增加一种样品</li>
+<li>行的顺序变化, 结果不变化</li>
+<li>仅当每个问题离散, 动态规划才管用, 不然没法建模</li>
+</ul>
+<h3 id="最长公共子串"><a href="#最长公共子串" class="headerlink" title="最长公共子串"></a>最长公共子串</h3><ul>
+<li>动态规划在给定的约束条件下找到最优解</li>
+<li>可被分解独立且离散的子问题, 可使用动态规划解决</li>
+<li>每种动态规划都涉及网格</li>
+<li>单元格中的值, 即是要优化的值</li>
+<li>每个单元格都是子问题, 考虑将问题分成子问题, 有助于找出网格坐标轴</li>
+<li>e.g 最长公共子串(hish vs fish or vista) 最长公共子序列 (fosh vs fort or fish )</li>
+</ul>
+<h2 id="K临近算法"><a href="#K临近算法" class="headerlink" title="K临近算法"></a>K临近算法</h2><ul>
+<li>K临近算法创建分类系统</li>
+<li>学习特征抽取</li>
+<li>学习回归, 预测数值</li>
+<li>K临近算法的应用案例和局限性</li>
+</ul>
+<h3 id="橙子还是柚子"><a href="#橙子还是柚子" class="headerlink" title="橙子还是柚子"></a>橙子还是柚子</h3><blockquote>
+<p>创建推荐系统</p>
+</blockquote>
+<h3 id="创建推荐系统"><a href="#创建推荐系统" class="headerlink" title="创建推荐系统"></a>创建推荐系统</h3><ul>
+<li>KNN 两项基本工作 分类和回归(预测结果)</li>
+<li>计算距离除了距离公式, 使用<strong>余弦相似度</strong></li>
+<li>如果有N位用户, 应考虑sqrt(N)个邻居. </li>
+</ul>
+<h3 id="机器学习简介"><a href="#机器学习简介" class="headerlink" title="机器学习简介"></a>机器学习简介</h3><ul>
+<li>OCR 光学字符识别</li>
+</ul>
+<h3 id="小结-8"><a href="#小结-8" class="headerlink" title="小结"></a>小结</h3><ul>
+<li>KNN用于分类和回归, 考虑最近的邻居</li>
+<li>分类就是编组</li>
+<li>回归就是预测数字</li>
+<li>特征抽取意味着将物品转化为数字</li>
+<li>是否挑选合适的特征事关成败</li>
+</ul>
+<h2 id="接下来如何做"><a href="#接下来如何做" class="headerlink" title="接下来如何做"></a>接下来如何做</h2><h3 id="树"><a href="#树" class="headerlink" title="树"></a>树</h3><ul>
+<li>二叉查找树<ul>
+<li>查询, 平均O(log2 n), 最差O(n)</li>
+<li>插入, 删除, O(log2 n)</li>
+<li>缺点: 不能随机访问</li>
+</ul>
+</li>
+<li><strong>B树, 红黑树, 堆, 伸展树</strong></li>
+</ul>
+<h3 id="反向索引"><a href="#反向索引" class="headerlink" title="反向索引"></a>反向索引</h3><ul>
+<li>搜索引擎</li>
+</ul>
+<h3 id="傅里叶变换"><a href="#傅里叶变换" class="headerlink" title="傅里叶变换"></a>傅里叶变换</h3><h3 id="并行算法"><a href="#并行算法" class="headerlink" title="并行算法"></a>并行算法</h3><ul>
+<li>并行速度提升并非线性<ul>
+<li>开销</li>
+<li>负载均衡<h3 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h3></li>
+</ul>
+</li>
+<li>流行的分布式算法<h3 id="布隆过滤器和HyperLogLog"><a href="#布隆过滤器和HyperLogLog" class="headerlink" title="布隆过滤器和HyperLogLog"></a>布隆过滤器和HyperLogLog</h3><blockquote>
+<p>海量数据的创意解决方案</p>
+</blockquote>
+</li>
+<li>概率性算法</li>
+</ul>
+<h3 id="SHA算法"><a href="#SHA算法" class="headerlink" title="SHA算法"></a>SHA算法</h3><ul>
+<li>安全散列算法</li>
+</ul>
+<h3 id="局部敏感的散列算法"><a href="#局部敏感的散列算法" class="headerlink" title="局部敏感的散列算法"></a>局部敏感的散列算法</h3><ul>
+<li>Simhash</li>
+</ul>
+<h3 id="Diffie-Hellman密钥交换"><a href="#Diffie-Hellman密钥交换" class="headerlink" title="Diffie-Hellman密钥交换"></a>Diffie-Hellman密钥交换</h3><ul>
+<li>公私钥, 替代者RSA</li>
+</ul>
+<h3 id="线性规划"><a href="#线性规划" class="headerlink" title="线性规划"></a>线性规划</h3><ul>
+<li><strong>Simplex算法</strong></li>
+</ul>
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><p><a target="_blank" rel="noopener" href="https://www.amazon.cn/dp/B075SWP6LG/ref=pd_vtp_351_4/462-1146991-5684113?_encoding=UTF8&pd_rd_i=B075SWP6LG&pd_rd_r=d222fffd-e59c-4e66-8a61-9807c70256c4&pd_rd_w=5J8cj&pd_rd_wg=m6NtB&pf_rd_p=c96463ae-5f19-4171-bef2-93ab273f1bae&pf_rd_r=F3YGJ146CZ26AHV6RTJS&psc=1&refRID=F3YGJ146CZ26AHV6RTJS">算法图解</a></p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://winterfell-ys.github.io/2020/07/learn-grokking-algorithms/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Backend/" rel="tag">Backend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Frontend/" rel="tag">Frontend</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag">读书笔记</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/07/tips-rabbitmqadmin-reset/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            rabbitmq不访问web端清除队列
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/06/tools-iptables/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">iptables入门</div>
+      </a>
+    
+  </nav>
+
+   
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2016-2020
+        <i class="ri-heart-fill heart_icon"></i> yusheng WINTERFELL
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/Tokugawa_Aoi_grey.png" alt="厭離穢土 欣求淨土"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">归档</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/categories">分类</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">标签</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">关于我</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+    <div id="music">
+    
+    
+    
+    <iframe frameborder="no" border="1" marginwidth="0" marginheight="0" width="200" height="86"
+        src="//music.163.com/outchain/player?type=2&id=22088505&auto=1&height=66"></iframe>
+</div>
+
+<style>
+    #music {
+        position: fixed;
+        right: 15px;
+        bottom: 0;
+        z-index: 998;
+    }
+</style>
+    
+  </div>
+</body>
+
+</html>
