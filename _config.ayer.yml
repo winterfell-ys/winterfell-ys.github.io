@@ -194,8 +194,8 @@ gitalk:
   clientID: c57d23e7c033e2ded72c
   clientSecret: 10b9f2872902ee2393e16dd1c40b4f54d681c709
   repo: https://github.com/winterfell-ys/winterfell-ys.github.io.git
-  owner: winterfell-ys
-  admin: winterfell-ys
+  owner: winterfell-ys.github.io
+  admin: winterfell-ys.github.io
 
 # 3、MiniValine
 # See: https://github.com/MiniValine/MiniValine
