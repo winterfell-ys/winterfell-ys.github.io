@@ -1346,19 +1346,19 @@
 <p>说的当然不是妹子, 是说高配主机, 大屏, 专业外设, 沉浸式桌椅, 满硬盘的游戏/电影…</p>
 <p>就着连续几次研究PC/服务器硬件的机会, 趁着今年最后一个长假入坑DIY, 早买早享受吧</p>
 <p>预算, 大概是这个淘宝爆款的水平 2899</p>
-<img src="image-20201003224509251.png" alt="image-20201003224509251" style="float:left;zoom:50%;" />
+<img src="image-20201003224509251.png" alt="image-20201003224509251" style="zoom:50%;" />
 
 <h1 id="主要硬件"><a href="#主要硬件" class="headerlink" title="主要硬件"></a>主要硬件</h1><h2 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h2><blockquote>
-<p>6月22日, 苹果公司在一年一度的全球开发者大会 WWDC 上, 宣布彻底放弃英特尔公司（Intel）的 CPU, 改用自己设计的 ARM 芯片</p>
+<p>6月22日, 苹果公司在一年一度的全球开发者大会 WWDC 上, 宣布彻底放弃英特尔公司(Intel)的 CPU, 改用自己设计的 ARM 芯片</p>
 </blockquote>
 <h3 id="CPU架构是什么"><a href="#CPU架构是什么" class="headerlink" title="CPU架构是什么"></a>CPU架构是什么</h3><blockquote>
-<p><strong>不同的 CPU 设计实现, 就称为” CPU 架构”</strong>, 目前最常见的架构只剩下两种：x86 架构和 ARM 架构</p>
-<p>x86 架构性能好, 但是耗电多、电压高, 主要用于桌面电脑和服务器, 生产厂商为 Intel 公司和 AMD 公司。</p>
-<p>ARM 架构耗电小、电压低, 但是单核性能不如 x86, 主要用于移动设备。ARM 芯片的生产商有许多家, 这是因为它的商业模式是授权制。英国的 ARM 公司出售指令集的授权, 购买授权的公司可以基于公版的设计, 开发自己的 ARM 芯片。高通、三星、华为、苹果等公司的芯片, 都属于这个模式。</p>
+<p><strong>不同的 CPU 设计实现, 就称为”CPU 架构”</strong>, 目前最常见的架构只剩下两种：x86 架构和 ARM 架构</p>
+<p>x86 架构性能好, 但是耗电多, 电压高, 主要用于桌面电脑和服务器, 生产厂商为 Intel 公司和 AMD 公司. </p>
+<p>ARM 架构耗电小, 电压低, 但是单核性能不如 x86, 主要用于移动设备. ARM 芯片的生产商有许多家, 这是因为它的商业模式是授权制. 英国的 ARM 公司出售指令集的授权, 购买授权的公司可以基于公版的设计, 开发自己的 ARM 芯片. 高通, 三星, 华为, 苹果等公司的芯片, 都属于这个模式. </p>
 </blockquote>
 <h3 id="复杂指令集和精简指令集"><a href="#复杂指令集和精简指令集" class="headerlink" title="复杂指令集和精简指令集"></a>复杂指令集和精简指令集</h3><ul>
-<li><strong>CISC</strong>: <a href="https://zh.wikipedia.org/wiki/CDC_6600">CDC 6600</a>、<a href="https://zh.wikipedia.org/wiki/System/360">System/360</a>、<a href="https://zh.wikipedia.org/wiki/VAX">VAX</a>、<a href="https://zh.wikipedia.org/wiki/PDP-11">PDP-11</a>、<a href="https://zh.wikipedia.org/wiki/Motorola_68000">Motorola 68000</a>家族、<a href="https://zh.wikipedia.org/wiki/X86">x86</a>等</li>
-<li><strong>RISC</strong>: <a href="https://zh.wikipedia.org/wiki/DEC_Alpha">DEC Alpha</a>、<a href="https://zh.wikipedia.org/w/index.php?title=ARC_(%E8%99%95%E7%90%86%E5%99%A8)&action=edit&redlink=1">ARC</a>、<a href="https://zh.wikipedia.org/wiki/ARM%E6%9E%B6%E6%A7%8B">ARM</a>、<a href="https://zh.wikipedia.org/wiki/AVR">AVR</a>、<a href="https://zh.wikipedia.org/wiki/MIPS%E6%9E%B6%E6%A7%8B">MIPS</a>、<a href="https://zh.wikipedia.org/wiki/PA-RISC">PA-RISC</a>、<a href="https://zh.wikipedia.org/wiki/Power_Architecture">Power ISA</a>（包括<a href="https://zh.wikipedia.org/wiki/PowerPC">PowerPC</a>、<a href="https://zh.wikipedia.org/wiki/Cell">PowerXCell</a>）、<a href="https://zh.wikipedia.org/wiki/RISC-V">RISC-V</a>和<a href="https://zh.wikipedia.org/wiki/SPARC">SPARC</a>等</li>
+<li><strong>CISC</strong>: <a href="https://zh.wikipedia.org/wiki/CDC_6600">CDC 6600</a>, <a href="https://zh.wikipedia.org/wiki/System/360">System/360</a>, <a href="https://zh.wikipedia.org/wiki/VAX">VAX</a>, <a href="https://zh.wikipedia.org/wiki/PDP-11">PDP-11</a>, <a href="https://zh.wikipedia.org/wiki/Motorola_68000">Motorola 68000</a>家族, <a href="https://zh.wikipedia.org/wiki/X86">x86</a>等</li>
+<li><strong>RISC</strong>: <a href="https://zh.wikipedia.org/wiki/DEC_Alpha">DEC Alpha</a>, <a href="https://zh.wikipedia.org/w/index.php?title=ARC_(%E8%99%95%E7%90%86%E5%99%A8)&action=edit&redlink=1">ARC</a>, <a href="https://zh.wikipedia.org/wiki/ARM%E6%9E%B6%E6%A7%8B">ARM</a>, <a href="https://zh.wikipedia.org/wiki/AVR">AVR</a>, <a href="https://zh.wikipedia.org/wiki/MIPS%E6%9E%B6%E6%A7%8B">MIPS</a>, <a href="https://zh.wikipedia.org/wiki/PA-RISC">PA-RISC</a>, <a href="https://zh.wikipedia.org/wiki/Power_Architecture">Power ISA</a>(包括<a href="https://zh.wikipedia.org/wiki/PowerPC">PowerPC</a>, <a href="https://zh.wikipedia.org/wiki/Cell">PowerXCell</a>), <a href="https://zh.wikipedia.org/wiki/RISC-V">RISC-V</a>和<a href="https://zh.wikipedia.org/wiki/SPARC">SPARC</a>等</li>
 </ul>
 <h3 id="CPU参数"><a href="#CPU参数" class="headerlink" title="CPU参数"></a>CPU参数</h3><ul>
 <li><p>型号</p>
@@ -1390,9 +1390,9 @@
 </li>
 <li><p>制作工艺:</p>
 <blockquote>
-<p>CPU的生产是需要经过7个工序的, 分别是：硅提纯, 切割晶圆, 影印, 蚀刻, 重复、分层, 封装, 测试</p>
+<p>CPU的生产是需要经过7个工序的, 分别是：硅提纯, 切割晶圆, 影印, 蚀刻, 重复, 分层, 封装, 测试</p>
 <p>通常来说制程工艺越先进, 芯片晶体管集成度越高, 核心面积越小, 成本越低, 而性能会更强</p>
-<p>台积电、三星都宣布了5nm EUV工艺, 据悉苹果明年的A14处理器就会用上5nm EUV工艺, 再下一代可能就是3nm工艺了</p>
+<p>台积电, 三星都宣布了5nm EUV工艺, 据悉苹果明年的A14处理器就会用上5nm EUV工艺, 再下一代可能就是3nm工艺了</p>
 </blockquote>
 </li>
 <li><p>核心代号</p>
@@ -1455,7 +1455,7 @@
 <li><a href="http://m.elecfans.com/article/610826.html">英特尔cpu型号及分类</a></li>
 <li><a href="www.ruanyifeng.com/blog/2011/01/brief_history_of_arm.html">ARM的历史</a></li>
 <li><a href="www.ruanyifeng.com/blog/2020/06/cpu-architecture.html">Intel 与 ARM 的战争</a></li>
-<li><a href="https://cloud.tencent.com/developer/article/1465603">性能基础之CPU、物理核、逻辑核概念与关系</a></li>
+<li><a href="https://cloud.tencent.com/developer/article/1465603">性能基础之CPU, 物理核, 逻辑核概念与关系</a></li>
 <li><a href="https://mp.weixin.qq.com/s?__biz=MzI4OTE3NTUxNQ==&mid=2247483968&idx=1&sn=da9310870e6f0b04eea73ab70c693f14&scene=0#wechat_redirect">ES？QS？谈谈CPU挑选时的二三事</a></li>
 </ul>
 <h2 id="主板-amp-显卡"><a href="#主板-amp-显卡" class="headerlink" title="主板 &amp; 显卡"></a>主板 &amp; 显卡</h2><blockquote>
@@ -1470,9 +1470,9 @@
 <li><a href="https://www.mydrivers.com/zhuanti/tianti/gpu/">桌面显卡天梯图</a></li>
 </ul>
 <h2 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h2><blockquote>
-<p>内存类型是指不同类型的内存传输类型各有差异, 在传输率、工作频率、工作方式、工作电压等方面都有不同的各种类型内存。市场中主要有的内存类型有SDRAM、DDR SDRAM和RDRAM三种</p>
+<p>内存类型是指不同类型的内存传输类型各有差异, 在传输率, 工作频率, 工作方式, 工作电压等方面都有不同的各种类型内存. 市场中主要有的内存类型有SDRAM, DDR SDRAM和RDRAM三种</p>
 <p>SDRAM从发展到现在已经经历了五代, 分别是：第一代SDR SDRAM, 第二代DDR SDRAM, 第三代DDR2 SDRAM, 第四代DDR3 SDRAM, 第五代, DDR4 SDRAM</p>
-<p>在80286时代，内存颗粒（Chip）是直接插在主板上的，叫做DIP(Dual In-line Package)。到了80386时代，换成1片焊有内存颗粒的电路板，叫做SIMM（Single-Inline Memory Module）。由阵脚形态变化成电路板带来了很多好处:模块化，安装便利等等，由此DIY市场才有可能产生。当时SIMM的位宽是32bit，即一个周期读取4个字节，到了奔腾时，位宽变为64bit，即8个字节，于是SIMM就顺势变为DIMM（Double-Inline Memory Module）。这种形态一直延续至今，也是内存条的基本形态。</p>
+<p>在80286时代, 内存颗粒(Chip)是直接插在主板上的, 叫做DIP(Dual In-line Package). 到了80386时代, 换成1片焊有内存颗粒的电路板, 叫做SIMM(Single-Inline Memory Module). 由阵脚形态变化成电路板带来了很多好处:模块化, 安装便利等等, 由此DIY市场才有可能产生. 当时SIMM的位宽是32bit, 即一个周期读取4个字节, 到了奔腾时, 位宽变为64bit, 即8个字节, 于是SIMM就顺势变为DIMM(Double-Inline Memory Module). 这种形态一直延续至今, 也是内存条的基本形态. </p>
 </blockquote>
 <h3 id="内存参数"><a href="#内存参数" class="headerlink" title="内存参数"></a>内存参数</h3><ul>
 <li><p>类型</p>
@@ -1484,7 +1484,7 @@
 </li>
 <li><p>插槽类型</p>
 <blockquote>
-<p>所谓双通道(channel)DDR，就是芯片组可以在两个不同的数据通道上分离寻址、读取数据。这两个相互独立工作的内存通道是依靠于两个独立并行工作的、位宽为64-bit的内存(DIMM)节制器下，因此使普通的DDR内存可以到达128-bit的位宽</p>
+<p>所谓双通道(channel)DDR, 就是芯片组可以在两个不同的数据通道上分离寻址, 读取数据. 这两个相互独立工作的内存通道是依靠于两个独立并行工作的, 位宽为64-bit的内存(DIMM)节制器下, 因此使普通的DDR内存可以到达128-bit的位宽</p>
 <p>Tip: <a href="https://kuaibao.qq.com/s/20200219AZOYL100?refer=spider">内存安装的远端优先原则</a></p>
 </blockquote>
 <ul>
@@ -1505,12 +1505,12 @@
 </ul>
 <p><img src="/2020/10/tips-diy-pc/image-20201004120356907.png" alt="image-20201004120356907"></p>
 <blockquote>
-<p>一般来讲，一条内存总线的data宽度是64bits，也就是说总线上有64条道，每条道上一次传送1位数据</p>
-<p>DIMM上的每个内存颗粒，提供4位、8位或者16位数据，来组成这64位数据(data word)。提供4位数据的芯片记作x4，提供8位数据的记作x8</p>
-<p>一条DIMM上一般至少有8颗内存颗粒（x16的用的比较少），排列在DIMM的一面或两面上。标准的DIMM的每一面有足够的空间容纳第9颗芯片，这第9颗芯片用来存储4bits或8bits的ECC</p>
-<p>如果1根ECC DIMM的9颗芯片都位于DIMM的同一面，就叫做single-sided（单面）。如果9颗芯片分布在DIMM的两面，就叫做double-sided（双面）</p>
-<p>1根 single-sided x8 ECC DIMM，和1根 double-sided x4 ECC DIMM，产生72bits数据(64bits data+8 bits ECC)。前者单面8颗芯片，后者双面，每面8颗共16颗芯片。两者都只用1个片选信号用来激活DIMM上的所有芯片。相反，1根 double-sided x8 DIMM 要求有2个片选信号来激活DIMM上的芯片来访问72-bit的block.</p>
-<p>平台虽然一共有8个内存插槽，但是如果用了两对2GB double-rank的内存，就已经达到了8 rank的上限（2对，共4根内存，每根有两个rank)。这时，纵使还有4个内存插槽空着，也不能在往上升级，这才只有8GB的内存在使用。如果，换成4对2GB single-rank的内存，同样是达到8 rank的上限，可是内存容量却达到了16GB。</p>
+<p>一般来讲, 一条内存总线的data宽度是64bits, 也就是说总线上有64条道, 每条道上一次传送1位数据</p>
+<p>DIMM上的每个内存颗粒, 提供4位, 8位或者16位数据, 来组成这64位数据(data word). 提供4位数据的芯片记作x4, 提供8位数据的记作x8</p>
+<p>一条DIMM上一般至少有8颗内存颗粒(x16的用的比较少), 排列在DIMM的一面或两面上. 标准的DIMM的每一面有足够的空间容纳第9颗芯片, 这第9颗芯片用来存储4bits或8bits的ECC</p>
+<p>如果1根ECC DIMM的9颗芯片都位于DIMM的同一面, 就叫做single-sided(单面). 如果9颗芯片分布在DIMM的两面, 就叫做double-sided(双面)</p>
+<p>1根 single-sided x8 ECC DIMM, 和1根 double-sided x4 ECC DIMM, 产生72bits数据(64bits data+8 bits ECC). 前者单面8颗芯片, 后者双面, 每面8颗共16颗芯片. 两者都只用1个片选信号用来激活DIMM上的所有芯片. 相反, 1根 double-sided x8 DIMM 要求有2个片选信号来激活DIMM上的芯片来访问72-bit的block.</p>
+<p>平台虽然一共有8个内存插槽, 但是如果用了两对2GB double-rank的内存, 就已经达到了8 rank的上限(2对, 共4根内存, 每根有两个rank). 这时, 纵使还有4个内存插槽空着, 也不能在往上升级, 这才只有8GB的内存在使用. 如果, 换成4对2GB single-rank的内存, 同样是达到8 rank的上限, 可是内存容量却达到了16GB. </p>
 </blockquote>
 <ul>
 <li><p>PC3-10600: DDR3-1333MHz</p>
@@ -1525,19 +1525,19 @@
 <li>R: stands for Registered</li>
 </ul>
 <blockquote>
-<p>reg 内存是带寄存器缓存的ECC内存，纯ECC内存不带reg功能</p>
+<p>reg 内存是带寄存器缓存的ECC内存, 纯ECC内存不带reg功能</p>
 </blockquote>
 </li>
 <li><p>其他数据标记:</p>
 <ul>
-<li>11: 内存颗粒的时延（Latency）数据, 越小越好</li>
+<li>11: 内存颗粒的时延(Latency)数据, 越小越好</li>
 </ul>
 </li>
 </ul>
 <h3 id="主要技术"><a href="#主要技术" class="headerlink" title="主要技术"></a>主要技术</h3><ul>
 <li>ECC: Error Checking and Correcting, 对应的中文名称就叫做”错误检查和纠正”, 从这个名称我们就可以看出它的主要功能就是”发现并纠正错误”, 它比奇偶校正技术更先进的方面主要在于它不仅能发现错误, 而且能纠正这些错误, 这些错误纠正之后计算机才能正确执行下面的任务, 确保服务器的正常运行</li>
-<li>Chipkill技术是IBM公司为了解决服务器内存中ECC技术的不足而开发的，是一种新的ECC内存保护标准。</li>
-<li>Register即寄存器或目录寄存器, 在内存上的作用我们可以把它理解成书的目录，有了它，当内存接到读写指令时，会先检索此目录，然后再进行读写操作，这将大大提高服务器内存工作效率。</li>
+<li>Chipkill技术是IBM公司为了解决服务器内存中ECC技术的不足而开发的, 是一种新的ECC内存保护标准. </li>
+<li>Register即寄存器或目录寄存器, 在内存上的作用我们可以把它理解成书的目录, 有了它, 当内存接到读写指令时, 会先检索此目录, 然后再进行读写操作, 这将大大提高服务器内存工作效率. </li>
 </ul>
 <h3 id="Tips-1"><a href="#Tips-1" class="headerlink" title="Tips"></a>Tips</h3><ul>
 <li>首选内存类型, DDR3起. 次选频率+容量, 记得兼顾主板/CPU兼容性</li>
@@ -1550,10 +1550,10 @@
 <li><a href="https://zhuanlan.zhihu.com/p/26255460">快速读懂内存条标签</a></li>
 </ul>
 <h2 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h2><h3 id="Tips-2"><a href="#Tips-2" class="headerlink" title="Tips"></a>Tips</h3><ul>
-<li>一般而言，PMR比SMR（叠瓦）的机械硬盘性能好；</li>
-<li>不建议购买3T以下的3.5寸机械硬盘，不建议购买2T以下的2.5寸机械硬盘；</li>
-<li>HGST的硬盘一向很稳健；</li>
-<li>希捷的8TB及以上大容量硬盘可靠性还不错；</li>
+<li>一般而言, PMR比SMR(叠瓦)的机械硬盘性能好</li>
+<li>不建议购买3T以下的3.5寸机械硬盘, 不建议购买2T以下的2.5寸机械硬盘</li>
+<li>HGST的硬盘一向很稳健</li>
+<li>希捷的8TB及以上大容量硬盘可靠性还不错</li>
 </ul>
 <h3 id="我买到的"><a href="#我买到的" class="headerlink" title="我买到的"></a>我买到的</h3><p><a href="https://item.jd.com/2066790.html"><img src="image-20201009004200903.png" alt="image-20201009004200903" style="zoom:50%;" /></a></p>
 <h3 id="本节参考-3"><a href="#本节参考-3" class="headerlink" title="本节参考"></a>本节参考</h3><ul>
