@@ -1448,9 +1448,12 @@
 <li>ARM, AMD, APU 真真别弄混了…</li>
 <li>多看看cpu天梯图</li>
 </ul>
-<h3 id="我挖到的"><a href="#我挖到的" class="headerlink" title="我挖到的"></a>我挖到的</h3><p>INTEL XEON E5-2670</p>
-<p>SR0KX 2.6GHz</p>
+<h3 id="我挖到的"><a href="#我挖到的" class="headerlink" title="我挖到的"></a>我挖到的</h3><ul>
+<li><code>INTEL XEON E5-2670 (SR0KX) 2.6GHz</code></li>
+</ul>
+<blockquote>
 <p>C2步进…不敢刮ES/QS</p>
+</blockquote>
 <h3 id="本节参考"><a href="#本节参考" class="headerlink" title="本节参考"></a>本节参考</h3><ul>
 <li><a href="http://m.elecfans.com/article/610826.html">英特尔cpu型号及分类</a></li>
 <li><a href="www.ruanyifeng.com/blog/2011/01/brief_history_of_arm.html">ARM的历史</a></li>
@@ -1578,9 +1581,9 @@
 <h1 id="结束语"><a href="#结束语" class="headerlink" title="结束语"></a>结束语</h1><h2 id="配置单"><a href="#配置单" class="headerlink" title="配置单"></a>配置单</h2><ul>
 <li><p>￥530 三件套</p>
 <ul>
-<li>intel Xeon E5-2670 Sandy Bridge EP 2.60GHz 8核16线程</li>
+<li><code>intel Xeon E5-2670 Sandy Bridge EP 2.60GHz</code> 8核16线程</li>
 <li>华南x79</li>
-<li>海力士16g 2Rx4 PC3-12800R</li>
+<li>海力士<code>16G 2Rx4 PC3-12800R</code></li>
 </ul>
 </li>
 <li><p>￥75 120G/SSD系统盘</p>
@@ -1611,7 +1614,7 @@
 <li>CPU小升级, 电源功率放大了点, 其他的看不出来</li>
 <li>主板看不出来, 都是x79, 半斤八两</li>
 <li>N卡960/1050 -&gt; 1060, 其他的看不出来</li>
-<li>内存DDR3 1600MHz, 还带Reg的ECC服务器内存, 淘宝爆款应该上不起DDR4的吧</li>
+<li>内存 <code>16G DDR3 1600MHz</code>, 还带Reg的ECC服务器内存, 淘宝爆款应该上不起DDR4的吧</li>
 <li>散热1个大风扇 -&gt; 铜管+2风扇</li>
 <li>3T的机械硬盘, 不然就五百G的游戏/电影怎么过瘾 <code>//心疼并瞟了一眼我的小破ps4(500G)</code></li>
 <li>显示器好歹是个品牌(AOC), 闲鱼秒的, 预算再足一点的话 还想上<code>27&#39;/2k(4k)/144Hz</code>的AOC或者DELL</li>
@@ -1619,7 +1622,7 @@
 </ul>
 </li>
 <li>x<ul>
-<li>机箱被小坑了下, 就多送个代装Win10, 省我2小时</li>
+<li>机箱被小坑了下, 就多送个代装Win10, 省了点时间</li>
 <li>SSD 120G还是个二手 比爆款(480G)差</li>
 <li>500w电源大风扇, + CPU &amp; GPU的4个风扇, 机箱又不太给力..可接受范围内的嗡嗡嗡</li>
 </ul>
